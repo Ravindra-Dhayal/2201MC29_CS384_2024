@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Excel File</title>
+    <style>
+        /* Basic styling for body */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Styling for the container */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        /* Heading styles */
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        /* Input file button */
+        input[type="file"] {
+            display: block;
+            margin: 1rem auto;
+            font-size: 1rem;
+            padding: 5px;
+        }
+
+        /* Upload button */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Success message */
+        p {
+            font-size: 1rem;
+            margin-top: 1rem;
+            color: #333;
+        }
+
+        /* Download link */
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Upload an Excel file to process:</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx, .xls" required>
+        <button type="submit">Upload and Process</button>
+    </form>
+
+    {% if filename %}
+        <p>File processed successfully! <a href="{{ url_for('download_file', filename=filename) }}">Download Processed File</a></p>
+    {% endif %}
+</body>
+</html>
